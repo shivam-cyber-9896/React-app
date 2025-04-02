@@ -1,35 +1,38 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
-  const [first,setFirst]=useState(20)
-  const [second,setSecond]=useState(40)
-  const [total,setTotal]=useState(0)
-  const [flag,setFlag]=useState(true)
-  function shownew()
-  {
-     setTotal(first+second)
-  }
-  function toggle()
-  {
-    setFlag(!flag)
-  }
-  console.log("component render")
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+import AuthButtons from './AuthButtons';
+import LoginPage from './LoginPage';
+import SignupPage from './SignupPage';
+import Ourweb from './Ourweb';
+import Top from './Top';
+import Footer from './Footer';
+import AdminPage from './AdminPage';
+import Form from './Form';
+import AboutUs from './AboutUs';
+
+const App = () => {
   return (
-    <div className="backred">
-   <h1>Total sum is :{total}</h1>
-   {
-    flag?"flag is true":"flag is false"
-   }
-   <h1>hello react</h1>
-  
-   
-   <button onClick={()=>shownew()}>show</button>
-   <button onClick={toggle}>Change status</button>
-    </div>
+    <Router>
+     
+      <Top />
+      <Ourweb /> 
+      <Routes>
+        <Route path="/auth" element={<AuthButtons />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/about" element={<AboutUs />} />
+      </Routes>
+      <Form />
+      <Footer />
+     
+    </Router>
   );
-}
+};
 
-export default App;
-
+export default App;
